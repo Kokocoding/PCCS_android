@@ -27,8 +27,10 @@ class MainActivity : AppCompatActivity() {
         val tag = view.tag
         if (tag is String) {
             val buttonValue = tag.toInt() // 将标签转换为您需要的数据类型
-            val cmd = byteArrayOf(0xFA.toByte(),0x00,0x00,buttonValue.toByte(),0x00,0x03,0x05,0xFD.toByte(),0x01,0x01,0x01,0x01,0x01)
-            sendCmd(cmd)
+            val test = byteArrayOf(0xB3.toByte(), 0x21, 0x47, 0x01, 0x01, 0x00, 0x00, 0x01, 0x01)
+            val cmd = byteArrayOf(0xFA.toByte(),0x00,0x00,buttonValue.toByte(),0x00,0x03, test.count().toByte(),0xFD.toByte())
+            val combinedByteArray = cmd + test
+            sendCmd(combinedByteArray)
         }
     }
 
